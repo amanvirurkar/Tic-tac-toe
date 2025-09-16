@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Toe Game</title>
+
+    <style>
+        .row{
+            display: flex;
+            border-radius: 10px;
+
+        }
+        .col{
+            border: 1px solid black;
+            height: 70px;
+            width: 70px;
+        }
+        .col:hover{
+            background: rgb(9, 235, 255);
+            color: rgb(0, 0, 0);
+            transition: 0.3s, color 0.3s; transition: 0.3s;
+        }
+        
+        body {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.container {
+    text-align: center;
+}
+
+.g {
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(248, 27, 27, 0.603);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    border: 1px solid #333;
+    height: 70px;
+    width: 70px;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background: #fff;
+}
+
+.col:hover {
+    background: #20adff;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #555;
+}
+
+        
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="g">
+            <div class="row">
+                <div onClick="handelClick(this)" class="col" id="0"></div>
+                <div onClick="handelClick(this)" class="col" id="1"></div>
+                <div onClick="handelClick(this)" class="col" id="2"></div>
+            </div>
+
+                  <div class="row">
+                <div onClick="handelClick(this)" class="col" id="3"></div>
+                <div onClick="handelClick(this)" class="col" id="4"></div>
+                <div onClick="handelClick(this)" class="col" id="5"></div>
+            </div>
+
+                  <div class="row">
+                <div onClick="handelClick(this)" class="col" id="6"></div>
+                <div onClick="handelClick(this)" class="col" id="7"></div>
+                <div onClick="handelClick(this)" class="col" id="8"></div>
+            </div>
+
+          
+        </div>
+    </div>
+
+    <button onclick="reset()">Clear</button>
+
+
+
+    <script>
+        let currentPlayer = "X"
+let arr = Array(9).fill(null)
+
+function checkWinner(){
+    if (
+        (arr[0] !== null && arr[0] === arr[1] && arr[1] === arr[2]) || 
+        (arr[3] !== null && arr[3] === arr[4] && arr[4] === arr[5]) || 
+        (arr[6] !== null && arr[6] === arr[7] && arr[7] === arr[8]) || 
+        (arr[0] !== null && arr[0] === arr[3] && arr[3] === arr[6]) || 
+        (arr[1] !== null && arr[1] === arr[4] && arr[4] === arr[7]) || 
+        (arr[2] !== null && arr[2] === arr[5] && arr[5] === arr[8]) || 
+        (arr[0] !== null && arr[0] === arr[4] && arr[4] === arr[8]) || 
+        (arr[2] !== null && arr[2] === arr[4] && arr[4] === arr[6])    
+    ) {
+        document.write(`Winner Is ${currentPlayer}`)
+    
+    }
+
+ if(!arr.some ((e)=> e===null)){
+     alert("draw")
+     return
+
+ }
+ 
+}
+
+function handelClick(el) {
+    
+    let id = Number(el.id)
+
+    if (arr[id] !== null) return 
+
+    arr[id] = currentPlayer
+    el.innerText = currentPlayer
+    checkWinner()
+    currentPlayer = currentPlayer === "X" ? "O" : "X"
+}
+
+function reset(){
+    window.location.reload();
+
+}
+
+    </script>
+</body>
+</html>
